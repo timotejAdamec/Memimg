@@ -41,15 +41,7 @@ import com.adamec.timotej.poznavacka.activities.AuthenticationActivity;
 import com.adamec.timotej.poznavacka.activities.lists.createList.CreateListActivity;
 import com.adamec.timotej.poznavacka.activities.practice.PracticeActivity;
 import com.adamec.timotej.poznavacka.activities.practice.PracticeActivity2;
-import com.adamec.timotej.poznavacka.activities.test.TestActivity;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.formats.NativeAdOptions;
-import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -57,7 +49,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.internal.NavigationMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -136,20 +127,24 @@ public class MyListsActivity extends AppCompatActivity {
 
     private boolean loadingPractice = false;
 
-    private ExtendedFloatingActionButton examEFAB;
+    //private ExtendedFloatingActionButton examEFAB; EXAM
 
     private RelativeLayout noListsLayout;
     private static TourGuide mTourGuide;
 
+    public static boolean initialized;
+
+    /* ADDS
     public static InterstitialAd mNewListInterstitialAd;
     public static UnifiedNativeAd mUnifiedNativeAd;
     //private RewardedAd mRewardedAd;
-    public static boolean initialized;
     private AdLoader nativeAdLoader;
     public static boolean rewardAdWatched;
 
     private InterstitialAd mPracticeLoadInterstitialAd;
     private boolean mPracticeLoadInterstitalAdWatched = false;
+    */
+
     private boolean practice2Transition = false;
     private boolean practiceTransition = false;
     private boolean practiceNavPressed = false;
@@ -176,10 +171,12 @@ public class MyListsActivity extends AppCompatActivity {
         }
 
         if (savingNewList) {
-            showNewListInterstitial();
+            // ADDS
+            /*showNewListInterstitial();
             if (mNewListInterstitialAd == null || !mNewListInterstitialAd.isLoaded()) {
                 Toast.makeText(getApplicationContext(), getString(R.string.wait_save), Toast.LENGTH_LONG).show();
-            }
+            }*/
+            Toast.makeText(getApplicationContext(), getString(R.string.wait_save), Toast.LENGTH_LONG).show();
 
             newListBTNProgressBar.setVisibility(View.VISIBLE);
             newListBTNProgressBar.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in));
@@ -205,9 +202,12 @@ public class MyListsActivity extends AppCompatActivity {
             currentSaveCreatedListAsync.execute();
 
         } else if (savingDownloadedList) {
-            if (mNewListInterstitialAd == null || !mNewListInterstitialAd.isLoaded()) {
+            // ADDS
+            /*if (mNewListInterstitialAd == null || !mNewListInterstitialAd.isLoaded()) {
                 Toast.makeText(getApplicationContext(), getString(R.string.wait_save), Toast.LENGTH_LONG).show();
-            }
+            }*/
+            Toast.makeText(getApplicationContext(), getString(R.string.wait_save), Toast.LENGTH_LONG).show();
+
             saveDownloadedList();
 
         } else if (sPoznavackaInfoArr == null || sPositionOfActivePoznavackaInfo == -1 || sPoznavackaInfoArr.isEmpty()) {
@@ -227,7 +227,7 @@ public class MyListsActivity extends AppCompatActivity {
             }
         }
 
-        examEFAB = findViewById(R.id.exams_btn); //TODO EXAM
+        /*examEFAB = findViewById(R.id.exams_btn); // EXAM
         examEFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -236,7 +236,7 @@ public class MyListsActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.ttlm_tooltip_anim_enter, R.anim.ttlm_tooltip_anim_exit);
                 finish();
             }
-        });
+        });*/
 
         /**
          * Inicializace Recycler View
@@ -249,9 +249,10 @@ public class MyListsActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        if ((sPositionOfActivePoznavackaInfo != -1) && (mUnifiedNativeAd == null)) {
+        // ADDS
+        /*if ((sPositionOfActivePoznavackaInfo != -1) && (mUnifiedNativeAd == null)) {
             loadNativeAd();
-        }
+        }*/
 
         /**
          * nastavení Event Listenerů
@@ -277,7 +278,8 @@ public class MyListsActivity extends AppCompatActivity {
             @Override
             public void onPracticeClick(final int position) {
                 if (!loadingPractice) {
-                    showPracticeLoadInterstitial();
+                    // ADDS
+                    //showPracticeLoadInterstitial();
                     loadingPractice = true;
                     sPositionOfActivePoznavackaInfo = position;
                     sActivePoznavacka = (PoznavackaInfo) sPoznavackaInfoArr.get(position);
@@ -414,7 +416,8 @@ public class MyListsActivity extends AppCompatActivity {
                         Intent intent0 = new Intent(getApplicationContext(), SharedListsActivity.class);
                         startActivity(intent0);
                         overridePendingTransition(R.anim.ttlm_tooltip_anim_enter, R.anim.ttlm_tooltip_anim_exit);
-                        loadNewListInterstitial();
+                        // ADDS
+                        //loadNewListInterstitial();
                         break;
                     case (R.id.action_create):
                         Intent intent1 = new Intent(getApplicationContext(), CreateListActivity.class);
@@ -469,9 +472,10 @@ public class MyListsActivity extends AppCompatActivity {
             }
         });
 
-        if (mPracticeLoadInterstitialAd == null || !mPracticeLoadInterstitialAd.isLoaded()) {
+        // ADDS
+        /*if (mPracticeLoadInterstitialAd == null || !mPracticeLoadInterstitialAd.isLoaded()) {
             loadPracticeLoadInterstitial();
-        }
+        }*/
 
         //navigation
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
@@ -489,12 +493,16 @@ public class MyListsActivity extends AppCompatActivity {
                             break;
                         }
                         practiceNavPressed = true;
-                        showPracticeLoadInterstitial();
+                        // ADDS
+                        /*showPracticeLoadInterstitial();
                         if (mPracticeLoadInterstitalAdWatched) {
                             Intent intent0 = new Intent(MyListsActivity.this, PracticeActivity.class);
                             startActivity(intent0);
                             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-                        }
+                        }*/
+                        Intent intent0 = new Intent(MyListsActivity.this, PracticeActivity.class);
+                        startActivity(intent0);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         break;
 
                     case R.id.nav_lists:
@@ -502,12 +510,12 @@ public class MyListsActivity extends AppCompatActivity {
                 startActivity(intent1);*/
                         break;
 
-                    //TODO EXAM
-                    case R.id.nav_test:
+                    // EXAM
+                    /*case R.id.nav_test:
                         Intent intent3 = new Intent(MyListsActivity.this, TestActivity.class);
                         startActivity(intent3);
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        break;
+                        break;*/
 
                     case R.id.nav_account:
                         if (savingDownloadedList || savingNewList) {
@@ -541,7 +549,8 @@ public class MyListsActivity extends AppCompatActivity {
         return rewardedAd;
     }
 
-    private void loadNewListInterstitial() {
+    // ADDS
+    /*private void loadNewListInterstitial() {
         mNewListInterstitialAd = new InterstitialAd(getApplicationContext());
         mNewListInterstitialAd.setAdUnitId("ca-app-pub-2924053854177245/3480271080");
         //mNewListInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); //Test add
@@ -590,7 +599,7 @@ public class MyListsActivity extends AppCompatActivity {
                 mPracticeLoadInterstitalAdWatched = true;
             }
         });
-    }
+    }*/
 
     private void updateData() {
         if (sActivePoznavacka == null) {
@@ -605,9 +614,11 @@ public class MyListsActivity extends AppCompatActivity {
             if (!PracticeActivity.mLoaded) {
                 Timber.d("Practice load, updateData(), notLoaded");
                 practiceTransition = true;
-                if (mPracticeLoadInterstitalAdWatched) {
+                // ADDS
+                /*if (mPracticeLoadInterstitalAdWatched) {
                     practiceTransition();
-                }
+                }*/
+                practiceTransition();
             } else {
                 Timber.d("Practice load, updateData(), loaded");
                 int count = PracticeActivity.sZastupceArrOrig.size();
@@ -618,19 +629,25 @@ public class MyListsActivity extends AppCompatActivity {
                 Timber.d("Practice load, updateData(), sNenuceniZastupci.size() = %s", PracticeActivity.sNenauceniZastupci.size());
                 if (count == PracticeActivity.sNenauceniZastupci.size()) {
                     practice2Transition = true;
-                    if (mPracticeLoadInterstitalAdWatched) {
+                    // ADDS
+                    /*if (mPracticeLoadInterstitalAdWatched) {
                         practice2Transition(PracticeActivity.ALL);
-                    }
+                    }*/
+                    practice2Transition(PracticeActivity.ALL);
                 } else if (PracticeActivity.sNenauceniZastupci.size() < 1) {
                     practice2Transition = true;
-                    if (mPracticeLoadInterstitalAdWatched) {
+                    // ADDS
+                    /*if (mPracticeLoadInterstitalAdWatched) {
                         practice2Transition(PracticeActivity.ALL);
-                    }
+                    }*/
+                    practice2Transition(PracticeActivity.ALL);
                 } else {
                     practiceTransition = true;
-                    if (mPracticeLoadInterstitalAdWatched) {
+                    // ADDS
+                    /*if (mPracticeLoadInterstitalAdWatched) {
                         practiceTransition();
-                    }
+                    }*/
+                    practiceTransition();
                 }
             }
         }
@@ -700,9 +717,12 @@ public class MyListsActivity extends AppCompatActivity {
                             getSMC(getApplicationContext()).updatePoznavackaFile("poznavacka.txt", sPoznavackaInfoArr);
                             if (SharedListsActivity.checkInternet(getApplicationContext())) {
                                 Toast.makeText(getApplicationContext(), R.string.corrupted_file_downloading_new, Toast.LENGTH_LONG).show();
-                                if (mNewListInterstitialAd != null && !mNewListInterstitialAd.isLoaded()) {
+                                // ADDS
+                                /*if (mNewListInterstitialAd != null && !mNewListInterstitialAd.isLoaded()) {
                                     Toast.makeText(getApplicationContext(), getString(R.string.wait_save), Toast.LENGTH_LONG).show();
-                                }
+                                }*/
+                                Toast.makeText(getApplicationContext(), getString(R.string.wait_save), Toast.LENGTH_LONG).show();
+
                                 userId_saving = sActivePoznavacka.getAuthorsID();
                                 Timber.d("List is corrupted, userID_saving = %s", userId_saving);
                                 docId_saving = sActivePoznavacka.getId();
@@ -819,7 +839,8 @@ public class MyListsActivity extends AppCompatActivity {
 
     private void saveDownloadedList() {
         Timber.d("saveDownloadedList()");
-        showNewListInterstitial();
+        // ADDS
+        //showNewListInterstitial();
         savingDownloadedList = true;
         newListBTNProgressBar.setVisibility(View.VISIBLE);
         newListBTNProgressBar.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in));
@@ -999,8 +1020,8 @@ public class MyListsActivity extends AppCompatActivity {
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 
-
-    private void loadNativeAd() {
+    // ADDS
+    /*private void loadNativeAd() {
 
         //nativeAdLoader = new AdLoader.Builder(getApplicationContext(), "ca-app-pub-3940256099942544/2247696110") TEST
         nativeAdLoader = new AdLoader.Builder(getApplicationContext(), "ca-app-pub-2924053854177245/6546317855")
@@ -1037,13 +1058,15 @@ public class MyListsActivity extends AppCompatActivity {
     }
 
     private void showPracticeLoadInterstitial() {
-        if (mPracticeLoadInterstitialAd.isLoaded()) {
-            mPracticeLoadInterstitialAd.show();
-        } else {
-            mPracticeLoadInterstitalAdWatched = true;
-            Timber.d("The interstitial wasn't loaded yet.");
+        if (!mPracticeLoadInterstitalAdWatched) {
+            if (mPracticeLoadInterstitialAd.isLoaded()) {
+                mPracticeLoadInterstitialAd.show();
+            } else {
+                mPracticeLoadInterstitalAdWatched = true;
+                Timber.d("The interstitial wasn't loaded yet.");
+            }
         }
-    }
+    }*/
 
     private void initTourGuide() {
         mTourGuide = TourGuide.init(this).with(TourGuide.Technique.CLICK)
@@ -1105,10 +1128,11 @@ public class MyListsActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            if (sPoznavackaInfoArr.contains(mUnifiedNativeAd)) {
+            // ADDS
+            /*if (sPoznavackaInfoArr.contains(mUnifiedNativeAd)) {
                 sPoznavackaInfoArr.remove(mUnifiedNativeAd);
                 mAdapter.notifyItemRemoved(sPoznavackaInfoArr.size());
-            }
+            }*/
 
             String pathPoznavacka = "poznavacka.txt";
             MyListsActivity.getSMC(getApplicationContext()).updatePoznavackaFile(pathPoznavacka, MyListsActivity.sPoznavackaInfoArr);
@@ -1116,13 +1140,16 @@ public class MyListsActivity extends AppCompatActivity {
             Log.d("Files", "Saved successfully");
 
             savingNewList = false;
+            // ADDS
+            //mPracticeLoadInterstitalAdWatched = true;
             newListBTNProgressBar.setVisibility(View.GONE);
             newListBTNProgressBar.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out));
 
-            if (mUnifiedNativeAd != null) {
+            // ADDS
+            /*if (mUnifiedNativeAd != null) {
                 sPoznavackaInfoArr.add(mUnifiedNativeAd);
                 mAdapter.notifyItemInserted(sPoznavackaInfoArr.size());
-            }
+            }*/
         }
 
         @Override
@@ -1367,10 +1394,11 @@ public class MyListsActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Drawable drawable) {
             super.onPostExecute(drawable);
-            if (sPoznavackaInfoArr.contains(mUnifiedNativeAd)) {
+            // ADDS
+            /*if (sPoznavackaInfoArr.contains(mUnifiedNativeAd)) {
                 sPoznavackaInfoArr.remove(mUnifiedNativeAd);
                 mAdapter.notifyItemRemoved(sPoznavackaInfoArr.size());
-            }
+            }*/
 
             if (downloadingCorruptedList) {
                 loadingPractice = false;
@@ -1388,13 +1416,16 @@ public class MyListsActivity extends AppCompatActivity {
 
             savingDownloadedList = false;
             savingFromDeeplink = false;
+            // ADDS
+            //mPracticeLoadInterstitalAdWatched = true;
             newListBTNProgressBar.setVisibility(View.GONE);
             newListBTNProgressBar.startAnimation(AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out));
 
-            if (mUnifiedNativeAd != null) {
+            // ADDS
+            /*if (mUnifiedNativeAd != null) {
                 sPoznavackaInfoArr.add(mUnifiedNativeAd);
                 mAdapter.notifyItemInserted(sPoznavackaInfoArr.size());
-            }
+            }*/
         }
 
         @Override
@@ -1517,7 +1548,7 @@ public class MyListsActivity extends AppCompatActivity {
 
         PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 0,
                 new Intent(getApplicationContext(), MyBroadcastReceiver.class),
-                FLAG_UPDATE_CURRENT);
+                FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
 
         Intent chooser = Intent.createChooser(sendIntent, null, pi.getIntentSender());
         startActivity(chooser);

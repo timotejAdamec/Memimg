@@ -16,8 +16,6 @@ import com.adamec.timotej.poznavacka.Zastupce;
 import com.adamec.timotej.poznavacka.activities.AccountActivity;
 import com.adamec.timotej.poznavacka.activities.SwitchActivity;
 import com.adamec.timotej.poznavacka.activities.lists.MyListsActivity;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -57,7 +55,8 @@ public class PracticeActivity2 extends AppCompatActivity {
 
     protected Resources res;
 
-    private AdView mAdView;
+    // ADDS
+    //private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,10 +139,10 @@ public class PracticeActivity2 extends AppCompatActivity {
             }
         });
 
-        //ad
-        mAdView = findViewById(R.id.adView);
+        // ADDS
+        /*mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
 
         //navigation
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
@@ -167,6 +166,7 @@ public class PracticeActivity2 extends AppCompatActivity {
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                         break;
 
+                        // EXAM
                     /*case R.id.nav_test:
                         Intent intent3 = new Intent(PracticeActivity2.this, TestActivity.class);
                         startActivity(intent3);

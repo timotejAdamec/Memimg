@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.adamec.timotej.poznavacka">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -23,25 +23,35 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-2924053854177245~1305178669" />
 
-        <activity android:name="com.adamec.timotej.poznavacka.activities.test.UserResultActivity"></activity>
-        <activity android:name="com.adamec.timotej.poznavacka.activities.test.TestUserActivity" />
-        <activity android:name="com.adamec.timotej.poznavacka.activities.lists.MyExamsActivity" />
+        <activity
+            android:name="com.adamec.timotej.poznavacka.activities.test.UserResultActivity"
+            android:exported="false"/>
+        <activity
+            android:name="com.adamec.timotej.poznavacka.activities.test.TestUserActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.adamec.timotej.poznavacka.activities.lists.MyExamsActivity"
+            android:exported="false"
+            />
         <activity
             android:name="com.adamec.timotej.poznavacka.activities.lists.createList.PopActivity"
-            android:theme="@style/AppTheme.Pop" />
-        <activity android:name="com.adamec.timotej.poznavacka.activities.SwitchActivity" />
+            android:theme="@style/AppTheme.Pop"
+            android:exported="false" />
+        <activity android:name="com.adamec.timotej.poznavacka.activities.SwitchActivity"
+            android:exported="false" />
         <activity
             android:name="com.adamec.timotej.poznavacka.activities.MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:exported="false" />
         <activity
             android:name="com.adamec.timotej.poznavacka.activities.lists.MyListsActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -57,14 +67,24 @@
 
         <activity
             android:name="com.adamec.timotej.poznavacka.activities.practice.PracticeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false" />
         <activity
             android:name="com.adamec.timotej.poznavacka.activities.practice.PracticeActivity2"
-            android:screenOrientation="portrait" />
-        <activity android:name="com.adamec.timotej.poznavacka.activities.test.TestActivity" />
-        <activity android:name="com.adamec.timotej.poznavacka.FirestoreImpl" />
-        <activity android:name="com.adamec.timotej.poznavacka.activities.AccountActivity" />
-        <activity android:name="com.adamec.timotej.poznavacka.activities.lists.SharedListsActivity" />
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name="com.adamec.timotej.poznavacka.activities.test.TestActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.adamec.timotej.poznavacka.FirestoreImpl"
+            android:exported="false" />
+        <activity
+            android:name="com.adamec.timotej.poznavacka.activities.AccountActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.adamec.timotej.poznavacka.activities.lists.SharedListsActivity"
+            android:exported="false" />
         <!--
         <activity
                     android:name=".activities.lists.createList.CreateListFragment"
@@ -72,9 +92,14 @@
         -->
         <activity
             android:name="com.adamec.timotej.poznavacka.activities.lists.createList.GeneratedListFragment"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
-        <activity android:name="com.adamec.timotej.poznavacka.activities.AuthenticationActivity" />
-        <activity android:name="com.adamec.timotej.poznavacka.activities.WelcomeActivity">
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+        <activity
+            android:name="com.adamec.timotej.poznavacka.activities.AuthenticationActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.adamec.timotej.poznavacka.activities.WelcomeActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -85,7 +110,8 @@
         <activity
             android:name="com.adamec.timotej.poznavacka.activities.lists.createList.CreateListActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false" />
 
         <receiver android:name="com.adamec.timotej.poznavacka.activities.lists.MyBroadcastReceiver" />
     </application>

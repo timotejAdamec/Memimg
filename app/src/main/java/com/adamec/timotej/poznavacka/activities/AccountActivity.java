@@ -87,6 +87,7 @@ public class AccountActivity extends AppCompatActivity {
                         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         break;
 
+                        // EXAM
                     /*case R.id.nav_test:
                         Intent intent3 = new Intent(AccountActivity.this, TestActivity.class);
                         startActivity(intent3);

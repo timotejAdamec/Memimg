@@ -94,7 +94,7 @@ class PoznavackaInfoViewHolder extends RecyclerView.ViewHolder {
         shareImg = itemView.findViewById(R.id.img_share);
         deleteImg = itemView.findViewById(R.id.img_delete);
         prewiewImg = itemView.findViewById(R.id.img_prewiew);
-        testImg = itemView.findViewById(R.id.img_test); //TODO EXAM
+        //testImg = itemView.findViewById(R.id.img_test); // EXAM
         cView = itemView.findViewById(R.id.cardView1);
 
 
@@ -150,8 +150,8 @@ class PoznavackaInfoViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
-        //TODO EXAM
-        testImg.setOnClickListener(new View.OnClickListener() {
+        // EXAM
+        /*testImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
                 if (listener != null) {
@@ -161,7 +161,7 @@ class PoznavackaInfoViewHolder extends RecyclerView.ViewHolder {
                     }
                 }
             }
-        });
+        });*/
     }
 }
 
@@ -259,7 +259,7 @@ public class RWAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     pivh.textView1.setText(currentPoznavackaInfo.getName());
                     pivh.textView2.setText(currentPoznavackaInfo.getAuthor());
                     pivh.languageURL.setText(currentPoznavackaInfo.getLanguageURL());
-                    pivh.testImg.setImageResource(R.drawable.ic_school_dark_purple_24dp); //TODO EXAM
+                    //pivh.testImg.setImageResource(R.drawable.ic_school_dark_purple_24dp); // EXAM
 
 
                     Drawable d = MyListsActivity.getSMC(pivh.prewiewImg.getContext()).readDrawable(currentPoznavackaInfo.getId() + "/", currentPoznavackaInfo.getPrewievImageLocation(), ((PoznavackaInfoViewHolder) holder).prewiewImg.getContext());

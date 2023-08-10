@@ -98,7 +98,7 @@
                 android:focusable="true"
                 app:backgroundTint="@android:color/holo_green_light"
                 app:fabSize="normal"
-                app:layout_constraintBottom_toTopOf="@id/adView"
+                app:layout_constraintBottom_toTopOf="@id/bottomBar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:rippleColor="@android:color/white"
                 app:srcCompat="@drawable/check" />
@@ -125,7 +125,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 app:fabSize="normal"
-                app:layout_constraintBottom_toTopOf="@id/adView"
+                app:layout_constraintBottom_toTopOf="@id/bottomBar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:srcCompat="@drawable/cross" />
 
@@ -161,12 +161,13 @@
                 android:focusable="true"
                 app:backgroundTint="@color/blue"
                 app:fabSize="normal"
-                app:layout_constraintBottom_toTopOf="@id/adView"
+                app:layout_constraintBottom_toTopOf="@id/bottomBar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/restart_only" />
 
-            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            <!-- ADDS -->
+            <!--<com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/adView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -177,7 +178,7 @@
                 ads:adUnitId="ca-app-pub-2924053854177245/9719495936"
                 ads:layout_constraintStart_toStartOf="parent"
                 ads:layout_constraintBottom_toTopOf="@id/bottomBar"
-                ads:layout_constraintEnd_toEndOf="parent" />
+                ads:layout_constraintEnd_toEndOf="parent" />-->
 
             <!--ca-app-pub-3940256099942544/6300978111 TEST add-->
             <RelativeLayout
